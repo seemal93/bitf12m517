@@ -1,0 +1,192 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<MvcApplication2.Models.UserMessage>
+@if (Session["name"] != null)
+{
+    <!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Khaadi msgs</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="Content/font-awesome.min.css" />
+        <script type="text/javascript" src="Shared/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="Script/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div>
+
+                    <a href="/Home/Index" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+
+                    <a href="/User/Women"><font size="6" color="black"> Women    |</font></a>
+
+                    <a href="/User/Man"><font size="6" color="black">Man    |</font> </a>
+
+                    <a href="/User/Home"><font size="6" color="black">    Home</font></a>
+
+                    <form action="/User/Search" class="pull-right">
+                        <input id="search" type="text" placeholder="SEARCH" name="search" value="" class="form-group-lg" maxlength="128">
+                        <input style="background-color:black;color:white" type="submit" value="Search" class="btn btn-primary">
+                    </form>
+
+
+                </div>
+
+
+            </div>
+            <hr />
+            <br />
+            <!-- Page Content -->
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-12">
+                            <br />
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                         <h3><b>MESSAGES</b></h3> 
+                            </div>
+                            <div class="col-lg-4"></div>
+                            <br /><br /><br />
+                            <br /><br />
+                            
+                        </div>
+                       
+
+                            @foreach (var i in Model)
+{
+                                <div class="row">
+
+                                                <div class="col-lg-1">
+                                                    <img src=@i.User.Picture width="40" height="40" />
+                                                    </div>
+                                               
+                                                <div class="col-lg-7">
+                                                    <h4><b>@i.User.fName: </b> @i.message  <small class="pull-right">@i.date</small></h4>
+                                                  </div>
+
+                                                <div class="col-lg-2">
+                                                    <form  method="post" action="/User/DelMsg">
+                                                        <input type="hidden" name="msgId" value="@i.Id" />
+                                                        <button class="btn btn-primary pull-right" style="background-color:black;color:white">Delete Message</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                
+                                
+                                
+                               
+                                 
+
+    
+   
+
+    foreach (var j in i.UserReplies)
+    {
+        
+          <div class="row">
+                                                <div class="col-lg-1">
+                                                    <img src="/images/admin.jpg" width="40" height="40" />
+                                                    </div>
+                                               
+                                                <div class="col-lg-7">
+                                                    <h4><b>Khaadi: </b> @j.Reply  <small class="pull-right">@j.date</small></h4>
+                                                  </div>
+
+                                                <div class="col-lg-2">
+                                                    <form method="post" action="/User/DelReply">
+                                                        <input type="hidden" name="msgId" value="@j.messageID" />
+                                                        <button class=" btn btn-primary pull-right" style="background-color:black;color:white">
+                                                        Delete Reply</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+        
+        
+        
+    }
+
+}
+                            </div>
+
+
+                      
+                    <div class="col-lg-9 ">
+
+                        <form method="post" action="/User/sendMsg">
+
+
+                            <br />
+                            <br />
+                            <hr />
+
+                            <div class="col-lg-6">
+
+
+
+                                <label class="control-label col-lg-7">Enter Your Message</label>
+                                <div><input type="text" name="message" class="form-control input-lg"></div>
+
+
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-2">
+                                <br /><br />
+                                <button class="btn btn-primary" style="background-color:black;color:white">send</button>
+                            </div>
+
+<br /><br /><br /><br /><br /><br />
+
+                        </form>
+                    </div>
+
+                        <br />
+
+                       
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+     
+        <script src="~/Content/js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/Content/js/bootstrap.min.js"></script>
+
+    </body>
+
+}
+else
+{
+    <h1>Please Login!</h1>
+}

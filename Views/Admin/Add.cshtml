@@ -1,0 +1,328 @@
+﻿@{
+    Layout = null;
+}
+@model List<MvcApplication2.Models.Catagory>
+
+@if (Session["Aname"] != null) { 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Template</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/simple-sidebar.css" rel="stylesheet">
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="Content/font-awesome.min.css" />
+    <script type="text/javascript" src="Shared/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="Script/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+
+        <div id="sidebar-wrapper">
+
+            <ul class="sidebar-nav">
+                <li class="nav-header">
+
+
+                    <a>
+                        <br />
+                        <img style="padding-left:30px" width="180" height="180" class="img-rounded" src="/images/admin.jpg" alt="your image" />
+                        <h5><i>Seemal Nasir</i></h5>
+                    </a>
+
+                    <a href="/Admin/Index">
+
+                        <br />
+
+                        <h3><i><span class="nav-label">Admin Dashboard</span></i></h3>
+                    </a>
+
+                </li>
+                <li>
+
+
+                    <a href="/Admin/AddCatagory">
+                        <i> Add Catagory</i>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/DelCatagory">
+                        <i> Delete Catagory</i>
+
+                    </a>
+                </li>
+
+
+                <li>
+
+
+                    <a href="/Admin/Add">
+                        <i> Add Items</i>
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Admin/Delete">
+                        <i>Delete/Update Items</i>
+
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="/Admin/ViewUsers">
+                        <i>View All Users</i>
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Admin/DeleteUser">
+                        <i>Delete User</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/msgs">
+                        <i>Messages</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/Logout">
+                        <i>Logout</i>
+                    </a>
+                </li>
+
+
+            </ul>
+
+
+        </div>
+
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid" style="background-color:beige">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <br />
+                        <br />
+
+                        <a href="/Admin/Admin" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                        <br />
+                        <br />
+                        <br />
+
+
+                       
+                        <hr />
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            
+
+                                <form class="col-md-6" action="/Admin/AddItem" method="post" enctype="multipart/form-data">
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Name </label>
+
+                                            <input type="text" name="Name"class="form-control input-lg">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Color </label>
+                                            <div><input type="text" required=""  name="Color" class="form-control input-lg"></div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Price </label>
+                                            <input type="text" name="Price" required=""  class="form-control input-lg">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Size </label>
+                                            <input type="text"   name="Size" class="form-control input-lg" placeholder="Optional">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Pieces</label>
+                                            <input type="text"  name="Piece" class="form-control input-lg" placeholder="Optional">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Quantity</label>
+                                            <input type="text" required="" name="Quantity" class="form-control input-lg">
+                                        </div>
+                                        <div class="form-group">
+                                            
+
+
+                                            <label class="control-label col-lg-2">Details</label>
+                                            <input type="text" required="" name="Details" class="form-control input-lg">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Catagory</label>
+                                            <select id="catagory" name="Catagory" class="form-control input-lg" title="catagory">
+
+                                                <option value=""  selected="selected"></option>
+                                                @foreach (var i in Model)
+                                                {
+                                                    <option value=@i.Name>@i.Name</option>
+                                                }
+
+                                            </select>
+
+                                        </div>
+                                        
+                                       
+                                    </div>
+                            <br />
+                            <br />
+                        <div class="col-lg-4"></div>
+                            <div class="col-lg-2">
+
+                                <h4>Upload Image: </h4>
+                                <input type='file' name="Picture" onchange="readURL(this);" />
+                                <img id="blah" width="380" height="400" src="/images/addItem.jpg" alt="" />
+
+                                <br />
+
+                                
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-lg-3">
+                                           <input type='file' name="Picture" onchange="readURL1(this);" />
+                                            <img id="blah1" width="300" height="450" src="/images/addItem.jpg" alt="" />
+                                        </div>
+                                        <div class="col-lg-5"></div>
+                                        <div class="col-lg-3">
+                                            <input type='file' name="Picture" onchange="readURL2(this);" />
+                                            <img id="blah2" width="300" height="450" src="/images/addItem.jpg" alt="" />
+                                        </div>
+                                        <br />
+                                    </div>
+                                    
+                                    <div class="form-group" style="padding-left:350px">
+                                        <br />
+                                        <br />
+                                        <button class="btn btn-primary col-lg-10" style="background-color:black;color:white">ADD</button>
+
+
+                                    </div>
+
+                            </form>
+
+
+                        </div>
+                       
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <hr />
+
+
+                        <a href="#menu-toggle" style="background-color:black;color:white" class=" btn btn-default" id="menu-toggle">Menu</a>
+                </div>
+                            </div>
+                        </div>
+                    </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+    <script>
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+    $('#blah')
+    .attr('src', e.target.result)
+    .width(380)
+    .height(500);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+    }
+    }</script>
+
+    <script>
+        function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah1')
+                    .attr('src', e.target.result)
+                    .width(380)
+                    .height(500);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }</script>
+
+    <script>
+        function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah2')
+                    .attr('src', e.target.result)
+                    .width(380)
+                    .height(500);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }</script>
+  
+</body>
+</html>
+    }
+           else
+           {
+               <h1>Please Login!</h1>
+           }

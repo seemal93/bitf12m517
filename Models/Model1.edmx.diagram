@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0506946171cb40109a4fbc00d0e9b302" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="DatabaseModel.Item" Width="1.5" PointX="2.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.User" Width="1.5" PointX="5" PointY="4.125" />
+        <EntityTypeShape EntityType="DatabaseModel.wishlist" Width="1.5" PointX="2.5" PointY="4.625" />
+        <EntityTypeShape EntityType="DatabaseModel.Receipt" Width="1.5" PointX="7.5" PointY="0.875" />
+        <EntityTypeShape EntityType="DatabaseModel.Catagory" Width="1.5" PointX="7.5" PointY="4.125" />
+        <EntityTypeShape EntityType="DatabaseModel.Like" Width="1.5" PointX="5" PointY="1.375" />
+        <AssociationConnector Association="DatabaseModel.ItemLike" />
+        <AssociationConnector Association="DatabaseModel.UserLike" />
+        <AssociationConnector Association="DatabaseModel.UserAdminReply" />
+        <EntityTypeShape EntityType="DatabaseModel.AdminReply" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DatabaseModel.UserReply" Width="1.5" PointX="6.75" PointY="10" />
+        <EntityTypeShape EntityType="DatabaseModel.AdminMessage" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DatabaseModel.UserMessage" Width="1.5" PointX="2.75" PointY="9.75" />
+        <AssociationConnector Association="DatabaseModel.UserMessageUserReply" />
+        <AssociationConnector Association="DatabaseModel.AdminMessageAdminReply" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.25" PointY="8.7911507414156187" />
+          <ConnectorPoint PointX="5" PointY="8.7911507414156187" />
+          <ConnectorPoint PointX="5" PointY="8.6989957682291674" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="8.6989957682291674" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="8.6989957682291674" />
+          <ConnectorPoint PointX="7.75" PointY="8.6989957682291674" />
+        </AssociationConnector>
+        <AssociationConnector Association="DatabaseModel.UserAdminMessage" />
+        <AssociationConnector Association="DatabaseModel.UserUserMessage" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

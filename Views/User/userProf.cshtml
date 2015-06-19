@@ -1,0 +1,154 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MvcApplication2.Models.User
+           @if (Session["name"] != null) { 
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Khaadi products</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div>
+
+                <a href="/Home/Index" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                &emsp;&emsp;
+                &emsp;&emsp;
+
+                <a href="/User/Women"><font size="6" color="black"> Women    |</font></a>
+
+                <a href="/User/Man"><font size="6" color="black">Man    |</font> </a>
+
+                <a href="/User/Home"><font size="6" color="black">    Home</font></a>
+
+                <form action="/User/Search" class="pull-right">
+                    <input id="search" type="text" placeholder="SEARCH" name="search" value="" class="form-group-lg" maxlength="128">
+                    <input style="background-color:black;color:white" type="submit" value="Search" class="btn btn-primary">
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+                <br /><br />
+                <hr />
+                <br />
+                <br />
+                
+                <div class="col-lg-4">
+                    <a>
+                        <img id="blah" width="400" height="400" class="img-circle" src=@Model.Picture alt="" />
+                    </a>
+                <br />
+                    <br />
+                    <div class="col-lg-12" style="padding-left:58px">
+                        @using (Html.BeginForm("removeProfPic", "User", new { Id = Model.Id }))
+                        {
+
+                            <button class="btn btn-primary" style="background-color:black;color:white">Remove Profile Picture</button>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-lg-1"></div>
+                <div class="col-lg-4">
+                    <br />
+                    <div class="col-lg-4"></div>
+                    <h2><b><i> @Model.fName @Model.lName</i></b></h2>
+                    <h4> <i><u>Gender:</u> @Model.Gender</i></h4>
+                    <h4><i><u>Date of Birth:</u> @Model.DOB</i></h4>
+                    <h4> <i><u>Contact#:</u> @Model.Contact</i></h4>
+                    <h4><i><u>Address:</u> @Model.Address</i></h4>
+                    <h4><i><u>Email Address:</u> @Model.Email</i></h4>
+                    <h4> <i><u>Password:</u> @Model.Password</i></h4>
+                    <br />
+                    <br />
+                    @using (Html.BeginForm("EditProf", "User", new { Id = Model.Id }))
+                    {
+
+                        <button class="btn btn-primary btn-lg" style="background-color:black;color:white">Edit Profile</button>
+                    }
+
+                </div>
+
+              
+            </div>
+        </div>
+
+    </div>
+    <script src="~/Content/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <script>
+        $('.carousel-holder').carousel({
+            interval: 5000
+        })
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                autoDimensions: false,
+                maxWidth: 800,
+                maxHeight: 600,
+                fitToView: true,
+                width: 300,
+                height: 400,
+                autoSize: false,
+                openEffect: 'fade',
+                closeEffect: 'fade',
+                autoCenter: true,
+                closeBtn: true,
+                closeClick: true,
+                leftRatio: 0.5,
+                TopRatio: 0.5
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox();
+        });
+    </script>
+
+
+
+</body>
+
+           }
+           else
+           {
+               <h1>Please Login!</h1>
+           }

@@ -1,0 +1,229 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MvcApplication2.Models.User
+           @if (Session["name"] != null) { 
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Khaadi products</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="Content/font-awesome.min.css" />
+    <script type="text/javascript" src="Shared/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="Script/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div>
+
+                <a href="/Home/Index" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                &emsp;&emsp;
+                &emsp;&emsp;
+
+                <a href="/User/Women"><font size="6" color="black"> Women    |</font></a>
+
+                <a href="/User/Man"><font size="6" color="black">Man    |</font> </a>
+
+                <a href="/User/Home"><font size="6" color="black">    Home</font></a>
+
+                <form action="/User/Search" class="pull-right">
+                    <input id="search" type="text" placeholder="SEARCH" name="search" value="" class="form-group-lg" maxlength="128">
+                    <input style="background-color:black;color:white" type="submit" value="Search" class="btn btn-primary">
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+                <br /><br />
+                <hr />
+                <br />
+                <br />
+
+                <div class="col-lg-11">
+                   
+                        <div class="col-lg-1"></div>
+                    <form method="post" action="/User/UpdateProf" enctype="multipart/form-data">
+                       
+                        <div class="col-lg-4">
+
+                            <br />
+                            <h3><b>Change Profile Picture</b></h3>
+                            <br />
+                            <input type='file' name="Picture" onchange="readURL(this);" />
+                            <br />
+
+                            <img id="blah" width="400" height="600" src="@Model.Picture" alt="your image" />
+                            </div>
+                           <br />
+                      
+                       
+                        <div class="col-lg-6"></div>
+
+                        @Html.TextBoxFor(m => m.DOB, new { type = "hidden" })
+                        @Html.TextBoxFor(m => m.Id, new { type = "hidden" })  
+                         @Html.TextBoxFor(m => m.Confirm_Password, new { type = "hidden" })
+                        @Html.TextBoxFor(m => m.Type, new { type = "hidden" })
+
+                        <div class="col-lg-6 pull-right">
+                            <div class="form-group">
+
+                                @Html.Label("First Name", new { @class = "control-label col-lg-5" })
+                                @Html.TextBoxFor(m => m.fName, new { @class = "form-control input-lg" })
+
+
+                            </div>
+                            <div class="form-group">
+
+                                @Html.Label("Last Name", new { @class = "control-label col-lg-5" })
+                                @Html.TextBoxFor(m => m.lName, new { @class = "form-control input-lg" })
+
+
+                            </div>
+                            <div class="form-group">
+
+                                @Html.Label("Gender", new { @class = "control-label col-lg-5" })
+                                @Html.TextBoxFor(m => m.Gender, new { @class = "form-control input-lg" })
+
+
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Date of Birth", new { @class = "control-label col-lg-5" })
+                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control input-lg", type = "date" })
+
+                            </div>
+                            <div class="form-group">
+
+                                @Html.Label("Address", new { @class = "control-label col-lg-5" })
+                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control input-lg" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Contact#", new { @class = "control-label col-lg-5" })
+                                @Html.TextBoxFor(m => m.Contact, new { @class = "form-control input-lg" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Email Address", new { @class = "control-label col-lg-5" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-lg" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Password", new { @class = "control-label col-lg-5" })
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control input-lg", type = "password" })
+
+                            </div>
+
+
+
+                            <div class="form-group">
+                                
+
+                                <button class="btn btn-primary btn-lg btn-block" style="background-color:black;color:white">Update</button>
+                                
+
+                            </div>
+                        </div>
+                        </form>
+
+                        <br />
+
+</div>
+               
+
+
+            </div>
+        </div>
+
+    </div>
+    <script src="~/Content/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <script>
+        $('.carousel-holder').carousel({
+            interval: 5000
+        })
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                autoDimensions: false,
+                maxWidth: 800,
+                maxHeight: 600,
+                fitToView: true,
+                width: 300,
+                height: 400,
+                autoSize: false,
+                openEffect: 'fade',
+                closeEffect: 'fade',
+                autoCenter: true,
+                closeBtn: true,
+                closeClick: true,
+                leftRatio: 0.5,
+                TopRatio: 0.5
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox();
+        });
+    </script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                    .attr('src', e.target.result)
+                    .width(380)
+                    .height(500);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }</script>
+
+
+</body>
+
+    }
+           else
+           {
+               <h1>Please Login!</h1>
+           }

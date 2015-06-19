@@ -1,0 +1,181 @@
+﻿@model List<MvcApplication2.Models.Receipt>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Session["name"] != null) { 
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Khaadi products</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div>
+
+                <a href="/Home/Index" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                &emsp;&emsp;
+                &emsp;&emsp;
+
+                <a href="/User/Women"><font size="6" color="black"> Women    |</font></a>
+
+                <a href="/User/Man"><font size="6" color="black">Man    |</font> </a>
+
+                <a href="/User/Home"><font size="6" color="black">    Home</font></a>
+
+                <form action="/User/Search" class="pull-right">
+                    <input id="search" type="text" placeholder="SEARCH" name="search" value="" class="form-group-lg" maxlength="128">
+                    <input style="background-color:black;color:white" type="submit" value="Search" class="btn btn-primary">
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="row carousel-holder">
+                        <div class="col-md-12">
+
+                            <hr />
+
+                            <br />
+                            <br />
+
+                            <div style="padding-left:500px"> <h1><b>Receipt</b></h1></div>
+                          
+                            <div class="row">
+                                @foreach (var i in Model)
+                                {
+                                    <div class="col-lg-10">
+                                    <div class="col-lg-4">
+                                        <img src=@i.Picture width="300" height="300" alt="">
+
+
+                                    </div>
+                                        <br />
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-4">
+                                        <br />
+                                        <br />
+                                        
+                                        <div class="product-name">
+                                            <h5>
+                                                <b> Customer Id: KC15-@Session["custId"]
+
+</h5>
+                                        </div>
+                                        <div class="product-name">
+                                            <h5><b>Customer Name: @Session["name"] </b>
+
+</h5>
+                                        </div>
+                                        <div class="product-name">
+                                            <h5>
+                                                <b>Product Code: KCW-@i.ItemId </b>
+
+</h5>
+                                        </div>
+                                        <div class="product-name">
+                                            <h5><b>
+                                            Quantity: @i.Quantity Pcs
+                                        </b>
+</h5>
+                                        </div>
+
+
+
+                                        <div class="price-box">
+                                            <h5>
+                                                <b>
+                                                    Price: PKR @i.Total
+                                                </b>
+</h5>
+
+                                        </div>
+                                       
+
+                                    </div>
+</div>
+                                    <div class="clear"></div>
+                                    <br />
+
+                                }
+                            </div>
+                            <div class="price-box" style="padding-left:500px">
+                                <h5><b>Total Amount: PKR @ViewBag.total</b></h5>
+                                
+                                   <h5><b>Date:  @ViewBag.date</b></h5>
+                                
+                            </div>
+                            <form action="/User/ok ">
+                                <div class="col-lg-4" style="padding-left:500px">
+                                    <hr />
+
+
+                                    <button style="background-color:black;color:white" type="submit" class="btn btn-primary btn-lg"><span><span>OK</span></span></button>
+                                </div>
+                            </form>
+                            
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="~/Content/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <script>
+        $('.carousel-holder').carousel({
+            interval: 5000
+        })
+    </script>
+
+    
+</body>
+
+
+}
+           else
+           {
+               <h1>Please Login!</h1>
+           }

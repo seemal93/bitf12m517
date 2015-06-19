@@ -1,0 +1,249 @@
+﻿@model MvcApplication2.Models.Item
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["name"] != null) { 
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Khaadi products</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div>
+
+                <a href="/Home/Index" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                &emsp;&emsp;
+                &emsp;&emsp;
+
+                <a href="/User/Women"><font size="6" color="black"> Women    |</font></a>
+
+                <a href="/User/Man"><font size="6" color="black">Man    |</font> </a>
+
+                <a href="/User/Home"><font size="6" color="black">    Home</font></a>
+
+                <form action="/User/Search" class="pull-right">
+                    <input id="search" type="text" placeholder="SEARCH" name="search" value="" class="form-group-lg" maxlength="128">
+                    <input style="background-color:black;color:white" type="submit" value="Search" class="btn btn-primary">
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="row carousel-holder">
+                        <div class="col-md-12">
+
+                            <hr />
+
+                            <br />
+                            <br />
+
+
+
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <div class="carousel-inner" style="width:100%">
+                                        <div class="item active">
+                                            <img class="slide-image"  width="450" height="500" src=@Model.Picture alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img class="slide-image" width="450" height="500" src=@Model.picture2 alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img class="slide-image"  width="450" height="500" src=@Model.picture3 alt="">
+                                        </div>
+                                    </div>
+                                  
+
+
+                                </div>
+
+                                <div class="col-lg-6">
+
+                                    <div class="product-name">
+                                        <h1>@Model.Name</h1>
+                                    </div>
+
+
+
+                                    <div class="price-box">
+                                        <span class="regular-price" id="product-price-9402">
+                                            <span class="price">PKR @Model.Price</span>
+                                        </span>
+
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                        <div class="ecom-detail">
+                                            <hr />
+                                            <h3><strong>Details:</strong></h3>
+                                            
+                                                <p><span class="product-code">@Model.Details</span></p>
+                                            @if (Model.Quantity == 0)
+{
+    <p><span class="product-code">Availabilty:Not Available </span></p>
+}
+else
+{
+    <p>
+        <span class="product-code">Availabilty:@Model.Quantity Items Available  </span>
+    </p>
+}   
+                                             <p><span class="product-code">Piece/Pieces: @Model.Piece </span>Pcs</p>                         
+                                            <p><span class="product-code">Color: @Model.Color</span></p>                                            
+                                            <br />
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="add-to-box">
+                                   @using (Html.BeginForm("AddToCart", "User", new { Id = Model.Id }))
+                                                {
+
+                                   
+                                            <div class="add-to-cart">
+                                                <div class="quanitybox">
+
+                                                    <label for="qty">Qty:</label>
+
+                                                    <div class="quantity-buttons">
+
+                                                        <input type="button" value="-" class="quantity_box_button_down" onclick="f2()" />
+
+                                                        <input type="text" name="qty" size="5" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
+                                                        <input type="button" value="+" class="quantity_box_button_up" onclick="f1()" />
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <hr />
+                                                
+
+                                                @if (Model.Quantity == 0)
+                                                {
+                                                    
+                                                <button style="background-color:black;color:white" type="submit" title="Add to Bag" id=@Model.Id disabled class="btn btn-primary btn-lg"><span><span>Add to Bag</span></span></button>
+                                        
+                                                    
+                                                }
+                                                else { 
+                                                <button style="background-color:black;color:white" type="submit" title="Add to Bag" id=@Model.Id class="btn btn-primary btn-lg"><span><span>Add to Bag</span></span></button>
+                                                }
+                                             </div>
+                                                }
+
+
+
+                                    </div>
+
+
+
+                                </div>
+                               
+
+</div>
+
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+           
+
+
+            <script src="~/Content/js/jquery.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="~/Content/js/bootstrap.min.js"></script>
+
+            <script>
+                $('.carousel-holder').carousel({
+                    interval: 3000
+                })
+            </script>
+
+    <script>
+        
+        
+        
+        function f1() {
+
+            var button = document.getElementById('qty');
+            var val = button.value;
+            if(val >= 1 && val < 12)
+                    button.value = parseInt(val) + 1;
+
+                    var i = ParseInt($('#qty').val);
+                    $('#qty').text("i+1");
+        }
+
+    </script>
+    <script>
+
+      
+        function f2() {
+
+            var button = document.getElementById('qty');
+         
+            var val = button.value;
+            if (val < 12 && val >=2) {
+                button.value = parseInt(val) - 1;
+
+                var i = ParseInt($('#qty').val);
+
+                $('#qty').text("i-1");
+            }
+        }
+
+    </script>
+
+</body>
+
+    }
+           else
+           {
+               <h1>Please Login!</h1>
+           }
+

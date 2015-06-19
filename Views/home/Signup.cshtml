@@ -1,0 +1,458 @@
+﻿@model MvcApplication2.Models.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Khaadi signup</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap/font-awesome/css/font-awesome.min.css" />
+    <script type="text/javascript" src="~/Content/bootstrap/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+@*<script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>*@
+
+
+
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div>
+
+                <a href="/Home/Index" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                &emsp;&emsp;
+                &emsp;&emsp;
+
+                <a href="/User/Women"><font size="6" color="black"> Women    |</font></a>
+
+                <a href="/User/Man"><font size="6" color="black">Man    |</font> </a>
+
+                <a href="/User/Home"><font size="6" color="black">    Home</font></a>
+
+                <form action="/User/Search" class="pull-right">
+                    <input id="search" type="text" placeholder="SEARCH" name="search" value="" class="form-group-lg" maxlength="128">
+                    <input style="background-color:black;color:white" type="submit" value="Search" class="btn btn-primary">
+                </form>
+
+            </div>
+
+
+        </div>
+
+    
+        <!-- Page Content -->
+
+    </div>
+    
+   
+
+    <div class="span12 col-main without-sidebar">
+        <div class="account-create">
+            <div class="page-title">
+
+                <br />
+
+                <hr>
+                <h3>
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;&emsp;
+                    &emsp;
+                    
+                    <b>
+                        SIGN UP NOW!
+                    </b> </h3>
+            </div>
+
+
+           <form method="post" action="/Home/AddInfo" enctype="multipart/form-data">
+
+          @* @using (Html.BeginForm("AddInfo", "Home",new{enctype="multipart/form-data"}, FormMethod.Post)) {*@
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+                <div class="contcustom">
+                    <input type="hidden" name="success_url" value="">
+                    <input type="hidden" name="error_url" value="">
+
+                    <br />
+
+                    <h3 class="legend"> <u>Personal Information</u></h3>
+                    <br />
+
+
+                    <div class="customer-name">
+
+                        <div >
+
+                            <h4>Upload Image: </h4>
+
+                            @Html.TextBoxFor(m=>m.Picture, new{type="file",onchange="readURL(this)",width="200" , height="200" })
+                            @Html.ValidationMessageFor(model => model.Picture)
+
+                            @*<input type='file' name="Picture" onchange="readURL(this);" />*@
+                            
+                           <br />
+                             <br />
+                            <img id="blah"  width="100" height="100" src="/images/profile.jpg" alt="" />
+                          
+ 
+                        </div>
+                        <div class="field name-firstname">
+
+                            <label for="firstname">First Name</label>
+                            <div class="input-box">
+                                
+                                @Html.TextBoxFor(m=>m.fName, new{@class = "form-control input-lg"})
+                                @Html.ValidationMessageFor(model => model.fName)
+
+                                @*<input type="text"  id="firstname" name="fName" value="" title="First Name" maxlength="255" class="input-text required-entry">*@
+                            </div>
+                        </div>
+                        <div class="field name-lastname">
+
+                            <label for="lastname" class="required">Last Name</label>
+                            <div class="input-box">
+
+                                @Html.TextBoxFor(m=>m.lName, new{@class = "form-control input-lg"})
+                                @Html.ValidationMessageFor(model => model.lName)
+
+                                @*<input type="text" id="lastname" required="" name="lName" value="" title="Last Name" maxlength="255" class="input-text required-entry">*@
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <label for="email_address" class="required">Email Address</label>
+                    <div class="input-box">
+                        @*<input type="email"  name="Email" id="email_address" required="" value="" title="Email Address" class="input-text validate-email required-entry">*@
+                        @Html.TextBoxFor(m=>m.Email, new{@class = "form-control input-lg"})
+                        @Html.ValidationMessageFor(model => model.Email)
+                     <input type="button" id="b1" value="Check" />
+                        <div id="result"></div>
+                    </div>
+
+                    <label for="email_address" class="required">Address</label>
+                    <div class="input-box">
+
+                        @Html.TextBoxFor(m=>m.Address, new{@class = "form-control input-lg"})
+                        @Html.ValidationMessageFor(model => model.Address)
+                        @*<input type="text" name="Address" id="Address" value="" title="Adress" required="" class="input-text validate-email required-entry">*@
+                    </div>
+                    <label for="email_address" class="required">Contact#</label>
+                    <div class="input-box" >
+                        @Html.TextBoxFor(m=>m.Contact, new{@class = "form-control input-lg"})
+                        @Html.ValidationMessageFor(model => model.Contact)
+                         @*<input type="text" required=""  name="Contact" id="Contact" value="" title="Contact" required="" class="input-text validate-email required-entry">*@
+                    </div>
+                    <br />
+                    <h3>  Date of Birth</h3>
+                    <div class="input-box customer-dob">
+
+
+                        <div class="dob">
+                           
+                                <div> <label for="month">MM-DD-YYYY</label></div>
+                            @*<input type="date" required="" id="dob" size="10" name="dob" value="" title="dob">*@
+                            @Html.TextBoxFor(m=>m.DOB, new{@class = "form-control input-lg"})
+                            @Html.ValidationMessageFor(model => model.DOB)
+                          
+                        </div>
+                    </div>
+
+
+
+                    <label for="gender">Gender</label>
+                    <div class="input-box">
+                        @Html.RadioButtonFor(m=>m.Gender,"male") Male
+                        @Html.RadioButtonFor(m=>m.Gender,"female") Female
+                        @Html.ValidationMessageFor(model => model.DOB)
+
+                    </div>
+
+                    <hr>
+                    <div class="fieldset">
+                        <h3 class="legend">Login Information</h3>
+
+                        <div class="field">
+                           
+
+                                <label for="password" class="required">Password</label>
+                                <div class="input-box">
+
+                                    @Html.PasswordFor(m=>m.Password, new{@class = "form-control input-lg"})
+                                    @Html.ValidationMessageFor(model => model.Password)
+                                    @*<input type="password" name="password" id="password" title="Password" class="input-text required-entry validate-password">*@
+                                </div>
+                         
+
+
+                            <div class="field">
+                             
+                                    <label for="confirmation" class="required">Confirm Password</label>
+                                    <div class="input-box">
+                                        @Html.PasswordFor(m=>m.Confirm_Password, new{@class = "form-control input-lg"})
+                                        @Html.ValidationMessageFor(model => model.Confirm_Password)
+                                         @*<input type="password" name="confirmation" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword">*@
+                                   
+                                     </div>
+
+                                <div class="col-lg-12" style="color:red">
+                                    <br />
+                                    <p>@ViewBag.ErrorMsg</p>
+                                </div>
+
+                                <br />
+                                <button type="submit"  style="background-color:black;color:white" title="Submit" class="button" onclick="return fname()"><span><span>Submit</span></span></button>
+
+                                </div>
+                                
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                
+           @*}*@ 
+        </form>
+
+                    <style>
+                        .redborder {
+                            border: 2px solid #f96145;
+                            border-radius: 2px;
+                        }
+
+                        .hidden {
+                            display: none;
+                        }
+
+                        .visible {
+                            display: normal;
+                        }
+
+                        .colored {
+                            background-color: #F0EEEE;
+                        }
+
+                        .row {
+                            padding: 20px 0px;
+                        }
+
+                        .bigicon {
+                            font-size: 97px;
+                            color: #f96145;
+                        }
+
+                        .contcustom {
+                            text-align: center;
+                            width: 300px;
+                            border-radius: 0.5rem;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            margin: 10px auto;
+                            background-color: #F0EEEE;
+                            padding: 20px;
+                        }
+
+                        
+                        .med {
+                            font-size: 27px;
+                            color: #8EB7E4;
+                        }
+
+                        .medhidden {
+                            font-size: 27px;
+                            color: #f96145;
+                            padding: 10px;
+                            width: 100%;
+                        }
+
+                        .wide {
+                            background-color: #8EB7E4;
+                            width: 100%;
+                            -webkit-border-top-right-radius: 0;
+                            -webkit-border-bottom-right-radius: 0;
+                            -moz-border-radius-topright: 0;
+                            -moz-border-radius-bottomright: 0;
+                            border-top-right-radius: 0;
+                            border-bottom-right-radius: 0;
+                        }
+                    </style>
+
+                    </div></div>
+            
+     
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(100);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }</script>
+    <script>
+        function fname() {
+        
+                var length = $('#firstname').val().length;
+                if (length > 20) {
+                    alert("Too Long Text!");
+                    return false;
+                }
+                if (length == 0) {
+                    alert("All fields are mandatory!");
+                    return false;
+                }
+            //lname
+                var length = $('#lastname').val().length;
+                if (length > 20) {
+                    alert("Too Long Text!");
+                    return false;
+                }
+                if (length == 0) {
+                    alert("All fields are mandatory!");
+                    return false;
+                }
+            //email
+                var length = $('#email_address').val().length;
+                if (length > 20) {
+                    alert("Too Long Text!");
+                    return false;
+                }
+                if (length == 0) {
+                    alert("All fields are mandatory!");
+                    return false;
+                }
+               
+
+
+            //address
+             var length = $('#Address').val().length;
+                if (length > 20) {
+                    alert("Too Long Text!");
+                    return false;
+                }
+                if (length == 0) {
+                    alert("All fields are mandatory!");
+                    return false;
+                }
+            //contact
+                var length = $('#Contact').val().length;
+                if (length > 20) {
+                    alert("Too Long Text!");
+                    return false;
+                }
+                if (length == 0) {
+                    alert("All fields are mandatory!");
+                    return false;
+                }
+
+           // contact field = numbers
+                //if ($('#Contact').val()) {
+                //    alert("Invalid Contact#!");
+                //    return false;
+                //}
+
+            //password
+                var length = $('#password').val().length;
+                if (length > 20) {
+                    alert("Too Long Password!");
+                    return false;
+                }
+                if (length == 0) {
+                    alert("All fields are mandatory!");
+                    return false;
+                }
+            //confirm password
+                var conf = $('#confirmation').val();
+                var pas = $('#password').val();
+
+                if (!(pas.Equals(conf))) {
+
+                    alert("Mismatch Password!");
+                    return false;
+                }
+            
+        
+        }
+     
+
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+
+            $('#checking').hide();
+
+            $('#b1').click(function () {
+
+                var userName = $('#email_address').val();
+
+                //alert('User Name ='+ userName);
+               // $('#checking').show();
+                $.getJSON("/home/CheckUserName?Email=" + userName, function(data) {
+                   // $('#checking').hide();
+                    if (data) {
+                        $('#result').text("Email ID is available");
+                 
+                    }
+                    else {
+                        $('#result').text("User already exists in database");
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
+
+    
+</body>
+

@@ -1,0 +1,244 @@
+﻿@Layout = "~/Views/Shared/_Layout.cshtml";
+
+@model List<MvcApplication2.Models.Item>
+@if (Session["name"] != null) { 
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Khaadi products</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div>
+
+                <a href="/Home/Index" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                &emsp;&emsp;
+                &emsp;&emsp;
+
+                <a href="/User/Women"><font size="6" color="black"> Women    |</font></a>
+
+                <a href="/User/Man"><font size="6" color="black">Man    |</font> </a>
+
+                <a href="/User/Home"><font size="6" color="black">    Home</font></a>
+                <form action="/User/Search" class="pull-right">
+                    <input id="search" type="text" placeholder="SEARCH" name="search" value="" class="form-group-lg" maxlength="128">
+                    <input style="background-color:black;color:white" type="submit" value="Search" class="btn btn-primary">
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="row carousel-holder">
+                        <div class="col-md-12">
+
+                            <hr />
+
+                            <br />
+                            <br />
+
+
+
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    
+                                    @foreach (var i in Model)
+                                    {
+
+                                        <h3><b>@i.Catagory</b></h3>
+                                        
+                                        break;
+                                     
+
+                                    }
+                                   
+                                    
+                                    <br />
+                                    <h4><b> Pieces</b></h4>
+                                    <h5>--------------------------------</h5>
+
+                                    @foreach (var f in Model.OrderBy(s => s.Piece).Distinct())
+                                    {
+
+                                        <h5><a href="/User/Pieces?pcs=@f.Piece&type=@f.Catagory"><font size=" 7" color="black"> </font>@f.Piece Pcs</a></h5>
+
+                                    }
+                                    
+
+                                    <br />
+                                    <h4><b> Colour</b></h4>
+                                    <h5>--------------------------------</h5>
+                                   
+                                 
+                                    @foreach(var f in Model.OrderBy(s=>s.Color).Distinct())
+                                    {
+                                      
+                                    <h5><a href="/User/Colors?color=@f.Color&type=@f.Catagory"><font size=" 7" color="black"> </font>@f.Color</a></h5>
+  
+                                    }
+
+                                </div>
+
+
+                                <div class="col-lg-10">
+
+                                    @foreach (var i in Model)
+                                    {
+                                        
+                                        <div>
+                                        <div class="col-lg-4">
+
+                                            <br />  
+                                            <br />
+                                            <div class="thumbnail">
+                                                
+                                              
+                                                <a class="fancybox" rel="group" href=@i.Picture> <img src=@i.Picture alt=""></a> 
+                                                <a class="fancybox fancybox.iframe" href=@i.Picture></a>
+                                                <h5><b> @i.Color</b></h5>
+
+                                                <h6> PKR @i.Price</h6>
+                                            </div>
+
+                                            <div style="display:marker;" class="pb_caption">
+                                              
+                                                @if(i.Likes.FirstOrDefault(s=>s.CustId==(int)Session["custId"])==null)
+
+                                                { 
+                                                      
+                                                 using (Html.BeginForm("Like", "User", new { id = i.Id, style = "float:left" }))
+                                                     {
+                                                     <button class="glyphicon glyphicon-thumbs-up btn-lg " style="background-color: white; color: black;float:left;font-size:small"></button>
+                                                     
+                                                     }
+                                                
+                                                
+                                                }
+                                                  else{
+                                                    <button class="glyphicon glyphicon-check up btn-lg " disabled style="background-color: white; color: black;float:left;font-size:small"></button>
+                                                     
+                                                    
+                                                    
+                                                  }
+                                      
+                                                
+                       
+                                                @using (Html.BeginForm("AddToWishlist", "User", new { Id = i.Id, style = "float:left" }))
+                                                {
+                                                    <button class="btn btn-primary btn-lg" style="background-color: black; color: white;float:left;font-size:small">Add to Wishlist</button>
+
+
+                                                }
+                                                  
+                                                @using (Html.BeginForm("Shop", "User", new { Id = i.Id, style = "float:left" }))
+                                                {
+
+                                                    <button class="btn btn-primary btn-lg" style="background-color: black; color: white; float: left;font-size:small">Shop Now</button>
+                                                }
+                                                   
+                                                
+                                                    
+                                            </div>
+                                       
+                                            </div>
+                                            
+                                            </div>
+                                             
+
+                                        
+
+                                    }
+
+                                </div>
+
+
+                                           
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    <script src="~/Content/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <script>
+        $('.carousel-holder').carousel({
+            interval: 5000
+        })
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                autoDimensions: false,
+                maxWidth: 800,
+                maxHeight: 600,
+                fitToView: true,
+                width: 300 ,
+                height:400 ,
+                autoSize: false,
+                openEffect: 'fade',
+                closeEffect: 'fade',
+                autoCenter: true,
+                closeBtn: true,
+                closeClick: true,
+                leftRatio: 0.5,
+                TopRatio:0.5
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox();
+        });
+    </script>
+
+   
+
+</body>
+
+    }
+           else
+           {
+               <h1>Please Login!</h1>
+           }

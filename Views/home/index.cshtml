@@ -1,0 +1,199 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<MvcApplication2.Models.Catagory>
+@using MvcApplication2.Models
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Khaadi</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+
+    <link href="~/Contentcss/shop-homepage.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="Content/font-awesome.min.css" />
+    <script type="text/javascript" src="Shared/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="Script/bootstrap.min.js"></script>
+   
+</head>
+<body>
+   <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+       <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div>
+
+                <a href="/Home/Index" title="" class="logo"><img src="~/images/khaadi_logo.png" alt=""></a>
+                &emsp;&emsp;
+                &emsp;&emsp;
+
+                @if (Session["name"] == null)
+                {
+                    <a href="/Home/Login"><font size="6" color="black"> Women    |</font></a>
+                }
+                else { 
+                
+                    <a href="/User/Women"><font size="6" color="black"> Women    |</font></a>
+                }
+                @if(Session["name"] == null){
+                    <a href="/Home/login"><font size="6" color="black">Man    |</font> </a>
+                }
+                else
+                {
+                    
+                 <a href="/User/Man"><font size="6" color="black">Man    |</font> </a>
+                }
+                @if (Session["name"] == null)
+                {
+                <a href="/Home/Login"><font size="6" color="black">    Home</font></a>
+            }
+                else
+                {
+                     <a href="/User/Home"><font size="6" color="black">    Home</font></a>
+            
+                }
+
+                <form action="/User/Search" class="pull-right">
+                    <input id="search" type="text" placeholder="SEARCH" name="search" value="" class="form-group-lg" maxlength="128">
+                    <input style="background-color:black;color:white" type="submit" value="Search" class="btn btn-primary">
+                </form>
+               
+                <br />
+               
+            </div>
+
+        </div>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="row carousel-holder">
+                    <div class="col-md-12">
+                       
+                        <hr />
+                        
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner" style="width:100%">
+                                <div class="item active">
+                                    <img class="slide-image" src="~/images/b1.png" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="~/images/b2.png" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="~/images/b3.jpg" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+                
+                
+
+                <div class="row">
+                    <div>
+
+                        <div style="font-family:'Times New Roman'">
+                            <div class="col-lg-4"></div>
+                            
+                            <h1><b>             TOP RATED ITEMS</b></h1>
+                            @*<div class="col-lg-4"></div>*@
+
+
+                        </div>
+
+
+<div>
+    <div class="col-lg-1"></div>
+                        @{var sess = Session["pic"] as List<Item>;
+                          
+                              foreach (var i in  sess)
+                        {
+
+                            <a><img src=@i.Picture width="340" height="340"/></a>
+
+                        }
+                              }
+                    </div>                   
+                         
+                  
+                    <hr />
+                    <br />
+                  
+                    
+                    @foreach (var i in Model)
+                        
+                    {  
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <br />
+                          @if(Session["name"] == null){
+                      
+                          
+                                <a href="/Home/Login"> <img src=@i.Picture alt=""></a>
+                                
+                                }
+
+                                else
+                                {
+
+                                <a href="/Home/ViewProducts?type=@i.Name"> <img src=@i.Picture alt=""></a>
+                                 
+                          }
+                         
+                        </div>
+
+                    }
+
+                    
+                </div>
+            </div>
+
+                            </div>
+                            
+                        </div>
+                  </div>
+             
+    <script src="~/Content/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <script>
+        $('.carousel-holder').carousel({
+            interval: 5000
+        })
+    </script>
+</body>
+
